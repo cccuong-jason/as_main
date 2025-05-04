@@ -172,3 +172,20 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Project specific
+.coverage
+.coverage.*
+logs/admin_audit/*
+!logs/admin_audit/.gitkeep
+designs/order*/*
+!designs/order*/.gitkeep
+
+# VS Code
+.vscode/
+
+# Local development settings
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
