@@ -167,7 +167,7 @@ def execute_agent_for_order(order_id: str, customer_message: str):
         "customer_message": customer_message,
         "language": "vi"  # Default to Vietnamese
     }
-    
+
     # Execute agent
     try:
         result = agent_executor.run(input=context)
@@ -195,7 +195,7 @@ def log_decision_phase(order_id: str, phase: str, details: Any):
         "execution_complete",
         "execution_failed"
     ]
-    
+
     if phase in critical_phases:
         # Log to database or file
         print(f"[{order_id}] Phase: {phase} - {details}")

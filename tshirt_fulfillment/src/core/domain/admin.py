@@ -8,7 +8,7 @@ from typing import Optional
 @dataclass
 class AdminUser:
     """Admin user entity.
-    
+
     Attributes:
         id: Unique identifier for the admin
         email: Admin's email address
@@ -18,6 +18,7 @@ class AdminUser:
         last_login: Timestamp of the admin's last login
         role: Admin's role in the system
     """
+
     id: str
     email: str
     name: str

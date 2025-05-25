@@ -28,15 +28,15 @@ def test_order_creation_and_processing(integrated_order_processor, order_data):
     create_result = integrated_order_processor.create_order(order_data)
     assert create_result.success is True
     order_id = create_result.order.id
-    
+
     # Process the order
     process_result = integrated_order_processor.process_order(order_id)
     assert process_result.success is True
-    
+
     # Verify the order status was updated
     get_result = integrated_order_processor.get_order(order_id)
     assert get_result.order.status == "processing"
-    
+
     # Verify a design was created
     assert process_result.design is not None
     assert process_result.design.prompt == order_data["design_prompt"]

@@ -12,4 +12,12 @@ repos:
     hooks:
     -   id: ruff
         args: [--fix]
-    -   id: ruff-format 
+    -   id: ruff-format
+
+-   repo: local
+    hooks:
+      - id: pre-push-ruff
+        name: ruff pre-push
+        entry: poetry run ruff check . --fix
+        language: system
+        stages: [push]

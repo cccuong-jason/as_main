@@ -19,17 +19,17 @@ This directory contains tests for the T-shirt Fulfillment application. The tests
     /services/            # Tests for services
       test_llm_service.py      # Tests for LLM service
       test_drive_service.py    # Tests for Drive service
-  
+
   /integration/           # Integration tests between components
     test_order_flow.py    # End-to-end order processing
     test_design_flow.py   # End-to-end design generation
     test_admin_flow.py    # End-to-end admin functionality
-  
+
   /regression/            # Regression tests for bug fixes
     test_order_regression.py  # Regression tests for orders
     test_design_regression.py # Regression tests for designs
     test_admin_regression.py  # Regression tests for admin
-  
+
   conftest.py             # Shared test fixtures
 ```
 

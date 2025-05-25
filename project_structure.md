@@ -17,7 +17,7 @@ This document outlines the new project structure following clean architecture pr
       order_processor.py  # Order processing use cases
       design_generator.py # Design generation use cases
       admin_service.py    # Admin functionality use cases
-  
+
   /adapters/              # Adapter layer - interfaces to external systems
     __init__.py
     /repositories/        # Data access implementations
@@ -29,7 +29,7 @@ This document outlines the new project structure following clean architecture pr
       llm_service.py      # LLM service adapter
       drive_service.py    # Google Drive service adapter
       excel_service.py    # Excel generation service
-  
+
   /infrastructure/        # Infrastructure layer - frameworks and drivers
     __init__.py
     /persistence/         # Database implementations
@@ -42,7 +42,7 @@ This document outlines the new project structure following clean architecture pr
     /external/            # External API implementations
       __init__.py
       google_api.py       # Google API implementation
-  
+
   /interfaces/            # Interface layer - delivery mechanisms
     __init__.py
     /api/                 # API interfaces
@@ -53,17 +53,17 @@ This document outlines the new project structure following clean architecture pr
     /cli/                 # Command-line interfaces
       __init__.py
       admin_cli.py        # Admin CLI
-  
+
   /config/                # Configuration
     __init__.py
     settings.py           # Application settings
     logging_config.py     # Logging configuration
-  
+
   /utils/                 # Utility functions and helpers
     __init__.py
     logging.py            # Logging utilities
     validators.py         # Validation utilities
-  
+
   main.py                 # Application entry point
   requirements.txt        # Dependencies
   .env.example            # Example environment variables

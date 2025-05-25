@@ -1,5 +1,6 @@
 # Regression tests for Order functionality
 import pytest
+
 from tshirt_fulfillment.src.core.domain.order import Order
 
 
@@ -20,7 +21,7 @@ def test_order_quantity_validation_regression():
             size="L",
             color="Blue",
             quantity=0,  # Invalid quantity
-            status="pending"
+            status="pending",
         )
 
 
@@ -41,7 +42,7 @@ def test_order_email_validation_regression():
             size="L",
             color="Blue",
             quantity=1,
-            status="pending"
+            status="pending",
         )
 
 
@@ -55,7 +56,7 @@ def test_duplicate_order_id_regression(mock_order_repository):
     # Arrange
     # Manually add an order to the repository's dictionary
     mock_order_repository.orders["duplicate_id"] = "dummy_order"
-    
+
     # Create an order with the same ID
     order = Order(
         id="duplicate_id",
@@ -65,9 +66,9 @@ def test_duplicate_order_id_regression(mock_order_repository):
         size="L",
         color="Blue",
         quantity=1,
-        status="pending"
+        status="pending",
     )
-    
+
     # Act/Assert - Attempt to save the order with a duplicate ID
     with pytest.raises(ValueError, match="Order with this ID already exists"):
         mock_order_repository.save(order)

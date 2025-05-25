@@ -1,6 +1,8 @@
 # Unit tests for Order domain model
 import pytest
-from tshirt_fulfillment.src.core.domain.order import Order, OrderStatus
+
+from tshirt_fulfillment.src.core.domain.order import Order
+from tshirt_fulfillment.src.core.domain.order import OrderStatus
 
 
 def test_order_creation():
@@ -14,12 +16,12 @@ def test_order_creation():
         "size": "L",
         "color": "Blue",
         "quantity": 1,
-        "status": "pending"
+        "status": "pending",
     }
-    
+
     # Act
     order = Order(**order_data)
-    
+
     # Assert
     assert order.id == order_data["id"]
     assert order.customer_info["name"] == order_data["customer_name"]
@@ -43,7 +45,7 @@ def test_order_validation():
             size="L",
             color="Blue",
             quantity=0,  # Invalid quantity should fail validation
-            status="pending"
+            status="pending",
         )
 
 
@@ -58,29 +60,29 @@ def test_order_status_transition():
         size="L",
         color="Blue",
         quantity=1,
-        status="pending"
+        status="pending",
     )
-    
+
     # Act
     order.update_status(OrderStatus.PROCESSING)
-    
+
     # Assert
     assert order.status == OrderStatus.PROCESSING
     assert len(order.phases) > 0
     assert order.phases[-1].phase == f"status_changed_to_{OrderStatus.PROCESSING.value}"
-    
+
     # Act/Assert - Test order result
     design_path = "/path/to/design.png"
     excel_path = "/path/to/excel.xlsx"
     drive_link = "https://drive.example.com/file"
-    
+
     order.set_result(
         design_path=design_path,
         excel_path=excel_path,
         drive_link=drive_link,
-        notification_sent=True
+        notification_sent=True,
     )
-    
+
     assert order.result.design_path == design_path
     assert order.result.excel_path == excel_path
     assert order.result.drive_link == drive_link

@@ -1,1 +1,1 @@
-"""Repository implementations for the core domain.""" 
+"""Repository implementations for the core domain."""

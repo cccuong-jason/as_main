@@ -11,17 +11,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    
+
     - name: Set up Python 3.11
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
-    
+
     - name: Install Poetry
       run: |
         curl -sSL https://install.python-poetry.org | python3 -
         echo "$HOME/.local/bin" >> $GITHUB_PATH
-    
+
     - name: Debug Poetry Configuration
       run: |
         echo "Current Poetry version:"
@@ -32,32 +32,32 @@ jobs:
         poetry config virtualenvs.in-project true
         echo "Updated Poetry configuration:"
         poetry config --list
-    
+
     - name: Load cached venv
       id: cached-poetry-dependencies
       uses: actions/cache@v3
       with:
         path: .venv
         key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
-    
+
     - name: Install dependencies
       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
       run: |
         poetry install --no-interaction --no-root --verbose
-    
+
     - name: Lint with Ruff
       run: |
         poetry run ruff check .
         poetry run ruff format --check .
-    
+
     - name: Run static type checking
       run: |
         poetry run mypy tshirt_fulfillment/
-    
+
     - name: Build package
       run: |
         poetry build
-    
+
     - name: Archive build artifacts
       uses: actions/upload-artifact@v4
       with:
@@ -73,17 +73,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
-    
+
     - name: Install Poetry
       run: |
         curl -sSL https://install.python-poetry.org | python3 -
         echo "$HOME/.local/bin" >> $GITHUB_PATH
-    
+
     - name: Debug Poetry Configuration
       run: |
         echo "Current Poetry version:"
@@ -94,23 +94,23 @@ jobs:
         poetry config virtualenvs.in-project true
         echo "Updated Poetry configuration:"
         poetry config --list
-    
+
     - name: Load cached venv
       id: cached-poetry-dependencies
       uses: actions/cache@v3
       with:
         path: .venv
         key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
-    
+
     - name: Install dependencies
       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
       run: |
         poetry install --no-interaction --no-root --verbose
-    
+
     - name: Run unit tests
       run: |
         poetry run pytest tshirt_fulfillment/tests/unit/ --cov=tshirt_fulfillment
-    
+
     - name: Upload coverage report
       uses: actions/upload-artifact@v4
       with:

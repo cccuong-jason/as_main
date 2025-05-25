@@ -113,13 +113,13 @@ def test_find_google_sheet_valid_client():
         {"name": "ABC_Order_April2023", "id": "abc123"},
         {"name": "ABC_Invoice_April2023", "id": "def456"}
     ])
-    
+
     # Execute with admin authentication
     result = find_google_sheet(
         criteria={"client_name": "ABC"},
         auth_token="valid_admin_token"
     )
-    
+
     # Assertions
     assert result.success == True
     assert len(result.sheets) == 2
@@ -131,7 +131,7 @@ def test_create_sheet_from_template_success():
     # Setup mock template and response
     mock_drive_api.setup_template("template123", "OrderTemplate")
     mock_drive_api.setup_create_response("xyz789")
-    
+
     # Execute with admin authentication
     result = create_google_sheet_from_template(
         template_id="template123",
@@ -140,7 +140,7 @@ def test_create_sheet_from_template_success():
         share_with=["printing.yoko@gmail.com"],
         auth_token="valid_admin_token"
     )
-    
+
     # Assertions
     assert result.success == True
     assert "https://docs.google.com/spreadsheets" in result.sheet_url

@@ -1,11 +1,13 @@
 # API for T-shirt Fulfillment AI Agent
 
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
 import logging
 
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
 from tshirt_fulfillment.src.config.settings import Config
-from tshirt_fulfillment.src.interfaces.api.routes import order_routes, admin_routes
+from tshirt_fulfillment.src.interfaces.api.routes import admin_routes
+from tshirt_fulfillment.src.interfaces.api.routes import order_routes
 
 # Set up logging
 logging.basicConfig(level=getattr(logging, Config.LOG_LEVEL))
@@ -38,4 +40,5 @@ async def health_check():
 # Run the API server
 if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run("api:app", host="0.0.0.0", port=8000, reload=True)
