@@ -15,7 +15,7 @@ def get_db():
 
 def get_order_repository(db: Session = Depends(get_db)) -> OrderRepository:
     """Get order repository instance."""
-    return OrderRepository(session=db)
+    return OrderRepository(db)
 
 
 def get_agent() -> TShirtFulfillmentAgent:
