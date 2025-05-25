@@ -1,18 +1,17 @@
 from dataclasses import dataclass
 from typing import Optional
 
-from langchain.agents import AgentExecutor
-from langchain.agents import create_react_agent
-from langchain.llms import Ollama
-from langchain.memory import ConversationBufferMemory
-from langchain.prompts import PromptTemplate
-
 from core.domain.agent import AgentRole
 from core.domain.agent import AgentSession
 from core.domain.agent import AgentStatus
 from core.domain.tools import ToolRegistry
 from core.use_cases.design_generator import DesignGenerator
 from core.use_cases.order_processor import OrderProcessor
+from langchain.agents import AgentExecutor
+from langchain.agents import create_react_agent
+from langchain.llms import Ollama
+from langchain.memory import ConversationBufferMemory
+from langchain.prompts import PromptTemplate
 
 
 @dataclass
