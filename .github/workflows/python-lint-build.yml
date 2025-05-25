@@ -53,7 +53,7 @@ jobs:
         poetry run pytest tshirt_fulfillment/tests/unit/ --cov=tshirt_fulfillment
     
     - name: Archive build artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: dist
         path: dist/
