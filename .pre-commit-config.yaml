@@ -13,12 +13,3 @@ repos:
     -   id: ruff
         args: [--fix]
     -   id: ruff-format
-
--   repo: local
-    hooks:
-      - id: pre-push-ruff
-        name: ruff pre-push
-        entry: poetry run ruff check . --select E,F,I --extend-select B,C4,UP --fix
-        language: system
-        stages: [push]
-        types: [python]
