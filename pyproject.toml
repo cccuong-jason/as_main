@@ -57,7 +57,9 @@ force-wrap-aliases = true
 force-single-line = true
 
 [tool.ruff.lint.per-file-ignores]
-"tests/*" = ["E501"]  # Ignore line length in tests
+"tests/*" = ["ALL"]
+"*/tests/*" = ["ALL"]
+"test_*.py" = ["ALL"]
 
 [tool.pyright]
 include = ["tshirt_fulfillment"]
