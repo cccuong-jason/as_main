@@ -1,6 +1,6 @@
 # Regression tests for Order functionality
 import pytest
-from core.domain.order import Order
+from tshirt_fulfillment.src.core.domain.order import Order
 
 
 @pytest.mark.regression

@@ -1,7 +1,7 @@
 # Regression tests for Design functionality
 import pytest
-from core.domain.design import Design
-from core.use_cases.design_generator import DesignGenerator
+from tshirt_fulfillment.src.core.domain.design import Design
+from tshirt_fulfillment.src.core.use_cases.design_generator import DesignGenerator
 
 
 @pytest.mark.regression

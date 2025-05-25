@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import MagicMock, patch
-from core.use_cases.agent_service import AgentService
-from core.domain.agent import (
+from tshirt_fulfillment.src.core.use_cases.agent_service import AgentService
+from tshirt_fulfillment.src.core.domain.agent import (
     AgentSession, AgentStatus, AgentRole
 )
 from langchain.llms.base import LLM
@@ -18,7 +18,7 @@ def mock_tool_registry():
 @pytest.fixture
 def order_processor(mock_order_repository):
     """Create an order processor for testing"""
-    from core.use_cases.order_processor import OrderProcessor
+    from tshirt_fulfillment.src.core.use_cases.order_processor import OrderProcessor
     return OrderProcessor(mock_order_repository)
 
 
@@ -42,7 +42,7 @@ def mock_llm():
 def agent_service(mock_llm, order_processor, mock_tool_registry,
                   mock_design_generator):
     """Create an agent service for testing"""
-    with patch('core.use_cases.agent_service.Ollama', return_value=mock_llm):
+    with patch('tshirt_fulfillment.src.core.use_cases.agent_service.Ollama', return_value=mock_llm):
         service = AgentService(
             order_processor=order_processor,
             design_generator=mock_design_generator,

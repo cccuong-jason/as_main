@@ -1,10 +1,10 @@
 # Test fixtures for integration tests
 import pytest
 from unittest.mock import MagicMock
-from core.domain.order import Order
-from core.domain.design import Design
-from core.use_cases.order_processor import OrderProcessor
-from core.use_cases.design_generator import DesignGenerator
+from tshirt_fulfillment.src.core.domain.order import Order
+from tshirt_fulfillment.src.core.domain.design import Design
+from tshirt_fulfillment.src.core.use_cases.order_processor import OrderProcessor
+from tshirt_fulfillment.src.core.use_cases.design_generator import DesignGenerator
 
 # Import fixtures from the main conftest.py
 pytestmark = pytest.mark.usefixtures("order_data", "design_data", "mock_order_repository", "mock_llm_service")
@@ -48,7 +48,7 @@ def api_client():
     # This would typically set up a test client for the API
     # For now, we'll just use a mock
     from fastapi.testclient import TestClient
-    from interfaces.api.fastapi_app import app
+    from tshirt_fulfillment.src.interfaces.api.fastapi_app import app
     
     client = TestClient(app)
     return client

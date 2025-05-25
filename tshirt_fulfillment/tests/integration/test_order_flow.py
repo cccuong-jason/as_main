@@ -1,10 +1,10 @@
 # Integration tests for Order flow
 import pytest
-from core.domain.order import Order, OrderStatus
-from core.domain.design import Design, DesignProvider
-from core.use_cases.order_processor import OrderProcessor
-from core.use_cases.design_generator import DesignGenerator
+
 from unittest.mock import MagicMock
+from tshirt_fulfillment.src.core.domain.order import Order, OrderStatus
+from tshirt_fulfillment.src.core.use_cases.order_processor import OrderProcessor
+from tshirt_fulfillment.src.core.use_cases.design_generator import DesignGenerator
 
 
 @pytest.fixture

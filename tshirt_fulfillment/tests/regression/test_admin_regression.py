@@ -1,7 +1,7 @@
 # Regression tests for Admin functionality
 import pytest
-from core.domain.admin import Admin
-from core.use_cases.admin_dashboard import AdminDashboard
+from tshirt_fulfillment.src.core.domain.admin import Admin
+from tshirt_fulfillment.src.core.use_cases.admin_dashboard import AdminDashboard
 
 
 @pytest.mark.regression

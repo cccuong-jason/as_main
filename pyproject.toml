@@ -4,9 +4,8 @@ version = "0.1.0"
 description = "T-shirt Fulfillment AI Agent"
 authors = ["Your Name <your.email@example.com>"]
 packages = [
-    { include = "tshirt_fulfillment", from = "." }
+    { include = "tshirt_fulfillment", from = "src" }
 ]
-package-mode = false  # Disable package mode since we're using it for dependency management
 
 [tool.poetry.dependencies]
 python = "^3.9"

@@ -1,9 +1,8 @@
 # Unit tests for OrderProcessor use case
 import pytest
-from unittest.mock import MagicMock, patch
-from core.domain.order import Order, OrderStatus
-from core.domain.design import Design
-from core.use_cases.order_processor import OrderProcessor
+from unittest.mock import MagicMock
+from tshirt_fulfillment.src.core.domain.order import Order, OrderStatus
+from tshirt_fulfillment.src.core.use_cases.order_processor import OrderProcessor
 
 
 @pytest.fixture
