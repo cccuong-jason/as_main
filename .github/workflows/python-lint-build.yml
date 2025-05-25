@@ -37,6 +37,10 @@ jobs:
         poetry config virtualenvs.in-project true
         poetry install --no-interaction --no-root
 
+    - name: Validate installed dependencies
+      run: |
+        poetry run mypy --version
+
     - name: Lint with Ruff
       run: |
         poetry run ruff check .
