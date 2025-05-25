@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    platform: linux/amd64  # Explicitly set platform for Windows
+    volumes:
+      - .:/app
+      - design_data:/app/tshirt_fulfillment/designs
+      - order_data:/app/tshirt_fulfillment/orders
+    ports:
+      - "8000:8000"
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - LLM_PROVIDER=mistral
+      - LOG_LEVEL=DEBUG
+      - DEFAULT_LANGUAGE=vi
+      - PYTHONPATH=/app
+    depends_on:
+      - redis
+      - ollama
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+  ollama:
+    image: ollama/ollama:latest
+    platform: linux/amd64  # Explicitly set platform for Windows
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_models:/root/.ollama
+    restart: unless-stopped
+    # Pull the Mistral model on startup
+    command: >
+      sh -c "ollama serve & sleep 10 && ollama pull mistral && tail -f /dev/null"
+
+volumes:
+  redis_data:
+  ollama_models:
+  design_data:
+  order_data:

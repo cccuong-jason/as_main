@@ -1,8 +1,8 @@
 # Unit tests for OrderRepository
 import pytest
 from unittest.mock import MagicMock, patch
-from tshirt_fulfillment.core.domain.order import Order
-from tshirt_fulfillment.adapters.repositories.order_repository import OrderRepository
+from core.domain.order import Order
+from core.repositories.order_repository import OrderRepository
 
 
 @pytest.fixture
@@ -35,14 +35,21 @@ def test_get_order_by_id(order_repository, order_data):
     """Test retrieving an order by ID"""
     # Arrange
     order = Order(**order_data)
-    order_repository.db_session.query().filter_by().first.return_value = order
     
+    # Mock the query chain
+    mock_query = MagicMock()
+    mock_query.filter_by.return_value.first.return_value = order
+    order_repository.db_session.query.return_value = mock_query
+
     # Act
     retrieved_order = order_repository.get_by_id(order.id)
     
     # Assert
     assert retrieved_order == order
+    # Verify the query chain was called correctly
     order_repository.db_session.query.assert_called_once()
+    mock_query.filter_by.assert_called_once_with(id=order.id)
+    mock_query.filter_by.return_value.first.assert_called_once()
 
 
 def test_get_order_by_id_not_found(order_repository):

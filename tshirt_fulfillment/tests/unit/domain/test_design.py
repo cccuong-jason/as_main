@@ -1,6 +1,6 @@
 # Unit tests for Design domain model
 import pytest
-from tshirt_fulfillment.core.domain.design import Design, DesignParameters, DesignProvider
+from core.domain.design import Design, DesignProvider
 
 
 def test_design_creation():

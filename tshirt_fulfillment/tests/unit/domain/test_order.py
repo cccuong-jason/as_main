@@ -1,6 +1,6 @@
 # Unit tests for Order domain model
 import pytest
-from tshirt_fulfillment.core.domain.order import Order, OrderStatus
+from core.domain.order import Order, OrderStatus
 
 
 def test_order_creation():

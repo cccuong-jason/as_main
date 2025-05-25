@@ -1,8 +1,7 @@
 # Unit tests for DesignGenerator use case
 import pytest
-from unittest.mock import MagicMock, patch
-from tshirt_fulfillment.core.domain.design import Design
-from tshirt_fulfillment.core.use_cases.design_generator import DesignGenerator
+from core.domain.design import Design
+from core.use_cases.design_generator import DesignGenerator
 
 
 @pytest.fixture

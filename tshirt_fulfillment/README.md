@@ -1,46 +1,71 @@
-
 # T-shirt Fulfillment AI Agent
-
-An AI-powered system for automating T-shirt order fulfillment.
 
 ## Project Structure
 
-This project follows clean architecture principles with the following layers:
+```
+tshirt_fulfillment/
+├── src/                      # Source code
+│   ├── core/                # Core business logic
+│   │   ├── domain/         # Domain models and entities
+│   │   ├── repositories/   # Repository interfaces
+│   │   ├── use_cases/     # Business use cases
+│   │   └── constants.py    # Application constants
+│   ├── interfaces/         # Interface adapters
+│   │   └── api/           # FastAPI endpoints
+│   └── adapters/          # External service adapters
+│       └── services/      # External service implementations
+├── tests/                  # Test files
+│   ├── unit/              # Unit tests
+│   ├── integration/       # Integration tests
+│   └── conftest.py        # Test configuration
+├── config/                # Configuration files
+│   └── settings.py        # Application settings
+├── scripts/               # Utility scripts
+├── docker/               # Docker-related files
+│   ├── Dockerfile        # Main Dockerfile
+│   └── docker-compose.yml # Docker Compose configuration
+├── pyproject.toml        # Poetry and tool configuration
+├── pytest.ini           # Pytest configuration
+└── README.md            # Project documentation
+```
 
-- **Core**: Domain entities and business logic
-- **Adapters**: Interfaces to external systems
-- **Infrastructure**: Technical implementations
-- **Interfaces**: User interfaces (API, CLI)
+## Development Setup
 
-## Setup Instructions
+1. Install Poetry:
+```bash
+curl -sSL https://install.python-poetry.org | python3 -
+```
 
-1. Install dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
-
-2. Configure environment variables:
-   - Copy `.env.example` to `.env`
-   - Update the values in `.env` with your configuration
+2. Install dependencies:
+```bash
+poetry install
+```
 
 3. Run the application:
-   ```
-   python main.py
-   ```
+```bash
+# Using Docker
+docker-compose up
 
-## Development
+# Using Poetry
+poetry run uvicorn src.interfaces.api.fastapi_app:app --reload
+```
 
-### Project Organization
+## Testing
 
-- **Domain Layer**: Contains business entities and rules
-- **Use Case Layer**: Contains application-specific business rules
-- **Interface Adapters**: Contains adapters between use cases and external frameworks
-- **Frameworks & Drivers**: Contains frameworks and tools like databases, web frameworks, etc.
+```bash
+# Run all tests
+poetry run pytest
 
-### Adding New Features
+# Run with coverage
+poetry run pytest --cov=src
+```
 
-1. Define domain entities in `core/domain/`
-2. Implement use cases in `core/use_cases/`
-3. Create adapters in `adapters/`
-4. Implement infrastructure in `infrastructure/`
-5. Expose interfaces in `interfaces/`
+## Code Quality
+
+```bash
+# Run pre-commit hooks
+poetry run pre-commit run --all-files
+
+# Format code
+poetry run ruff format .
+```
